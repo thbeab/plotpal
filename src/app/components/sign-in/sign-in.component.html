@@ -1,2 +1,5 @@
 <p>sign-in works!</p>
-<button (click)="signService.signIn()">Sign-In with Google</button>
+@if(this.signService.user){
+    <p>{{signService.user.displayName}}</p>
+}
+<button class="btn btn-primary" (click)="signService.signIn()">Sign-In with Google</button>
