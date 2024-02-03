@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "plotpal-25e9e": {
+      "hosting": {
+        "plot-pal": [
+          "plotpal-25e9e"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "plotpal-25e9e"
+  }
+}

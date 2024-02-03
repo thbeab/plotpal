@@ -88,6 +88,23 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "version": 2
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "plot-pal:build:production",
+              "serveTarget": "plot-pal:serve:production"
+            },
+            "development": {
+              "buildTarget": "plot-pal:build:development",
+              "serveTarget": "plot-pal:serve:development"
+            }
+          },
+          "defaultConfiguration": "production"
         }
       }
     }
