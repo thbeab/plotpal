@@ -1,12 +1,17 @@
 import { Injectable } from '@angular/core';
-import { GoogleAuthProvider, getAuth, signInWithPopup } from '@angular/fire/auth';
+import { GoogleAuthProvider, getAuth, signInWithPopup, signOut } from '@angular/fire/auth';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  user: any;
   provider = new GoogleAuthProvider();
-  constructor() { }
+  constructor() {
+    const user = localStorage.getItem("user");
+    this.user = user ? user : null
+    console.log("ABC" + this.user)
+   }
   
 
   public signIn(){
@@ -14,13 +19,24 @@ export class AuthService {
     signInWithPopup(auth, this.provider).then((result)=>{
       const creds = GoogleAuthProvider.credentialFromResult(result);
       const token = creds?.accessToken;
-      const user = result.user;
-      console.log(user);
+      this.user = result.user;
+      localStorage.setItem("user", JSON.stringify(this.user));
+      
+      console.log(this.user);
 
     }).catch(()=>{
       console.log("PPPP")
     })
 
 
+  }
+
+  public logOut(){
+    const auth = getAuth();
+    signOut(auth).then(()=>{
+      console.log("AVC");
+      this.user = null
+      localStorage.removeItem("user")
+    })
   }
 }
