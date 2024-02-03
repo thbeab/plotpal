@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Auth, GoogleAuthProvider, signInWithPopup} from '@angular/fire/auth';
+import { collection, collectionData } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-gardens-page',
@@ -10,5 +11,7 @@ import { Auth, GoogleAuthProvider, signInWithPopup} from '@angular/fire/auth';
 })
 export class GardensPageComponent {
   constructor(private auth: Auth){}
+
+  
 
 }
