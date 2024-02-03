@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Firestore, collection, doc, getDoc } from '@angular/fire/firestore';
+import { Garden } from '../interfaces/garden';
 
 
 @Component({
@@ -10,7 +11,7 @@ import { Firestore, collection, doc, getDoc } from '@angular/fire/firestore';
   styleUrl: './garden-page.component.css'
 })
 export class GardenPageComponent {
-  garden: any;
+  garden: Garden = {} as Garden;
 
   @Input()
   set id(id: string) {
@@ -18,7 +19,7 @@ export class GardenPageComponent {
     const gardenRef = doc(gardensRef, id)
     getDoc(gardenRef).then((doc) => {
       if (doc.exists()) {
-        this.garden = doc.data();
+        this.garden = doc.data() as Garden;
       }
   })
   }
