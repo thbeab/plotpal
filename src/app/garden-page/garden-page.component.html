@@ -1,12 +1,15 @@
 <div>
     <h1 class="text-3xl font-bold"> {{garden.name}} </h1>
     <p class="text-lg"> {{garden.description}} </p>
+
+    <div class="px-4">
+        <input type="text" class="input input-bordered" placeholder="Plot number" [(ngModel)]="plotNumber" required>
+        <button class="btn btn-primary mx-4" (click)="addPlot()">Add a plot</button>
+    </div>
     <app-chat id="chat"></app-chat>
-
-
 </div>
 
-<div class="grid grid-cols-4 gap-4 p-4">
+<div class="grid grid-cols-3 gap-4 p-4">
     @for(plot of plots$ | async; track plot.id){
     <app-plot-card [plot]="plot"></app-plot-card>
     }
@@ -23,8 +26,8 @@
 
 <dialog #success_modal class="modal">
     <div class="modal-box">
-        <h3 class="font-bold text-lg">Succès</h3>
-        <p>La parcelle a bien été ajoutée</p>
+        <h3 class="font-bold text-lg">Success</h3>
+        <p>The plot has been added successfully</p>
         <div class="modal-action">
             <form method="dialog">
                 <button class="btn btn-primary" (click)="success_modal.close()">Fermer</button>
