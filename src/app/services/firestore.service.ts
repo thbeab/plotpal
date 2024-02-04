@@ -35,8 +35,8 @@ export class FirestoreService {
     return collectionData(collection(this.firestore, `gardens/${gardenId}/plots`), {idField: 'id'});
   }
 
-  claimPlot(id: string, userId: string){
+  claimPlot(id: string, userId: string, userName: string){
     const plotRef = doc(this.firestore, `gardens/${this.gardenId.currentId}/plots/${id}`);
-    return updateDoc(plotRef, {userId: userId});
+    return updateDoc(plotRef, {userId: userId, userName: userName});
   }
 }

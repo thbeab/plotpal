@@ -4,6 +4,7 @@
           <h2 class="card-title">  {{ plot.number }} </h2>
           <!-- <p> {{garden.description}}</p>   -->
       </div>
+      
       <button class="btn btn-primary" (click)="claim()"> Claim </button>
 </div>
 } @else {
@@ -11,6 +12,7 @@
       <div class="card-body items-center text-center">
           <h2 class="card-title">  {{ plot.number }} </h2>
           <!-- <p> {{garden.description}}</p>   -->
+          <div class="badge badge-secondary">{{plot.userName}}</div>
       </div>
 </div>
 }

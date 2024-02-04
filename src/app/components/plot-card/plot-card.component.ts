@@ -17,7 +17,7 @@ export class PlotCardComponent {
 
   claim() {
     if(!this.auth.getuser()) return alert('You must be logged in to claim a plot')
-    this.firestore.claimPlot(this.plot.id, this.auth.getuser()?.uid as string).then(() => {
+    this.firestore.claimPlot(this.plot.id, this.auth.getuser()?.uid as string, this.auth.getuser()?.displayName as string).then(() => {
       window.alert('Plot claimed')
     })
   }
