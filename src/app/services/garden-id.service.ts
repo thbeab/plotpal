@@ -4,6 +4,6 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class GardenIdService {
-  currentId: String = ''
+  currentId: string = ''
   constructor() { }
 }

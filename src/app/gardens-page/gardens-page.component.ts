@@ -36,4 +36,8 @@ export class GardensPageComponent implements OnInit{
     })
     this.newGarden = {} as Garden;
   }
+
+  getGarden(id: string) {
+    return this.firestore.getGarden(id);
+  }
 }
