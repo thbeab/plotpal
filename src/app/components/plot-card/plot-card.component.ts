@@ -18,7 +18,7 @@ import { FirestoreService } from '../../services/firestore.service';
 export class PlotCardComponent implements AfterViewInit{
   @Input() plot: Plot = {} as Plot;
 
-  constructor(private firestore: FirestoreService, private auth: AuthService, readonly gadenID: GardenIdService) { }
+  constructor(private firestore: FirestoreService, readonly auth: AuthService, readonly gadenID: GardenIdService) { }
 
   claim() {
     if(!this.auth.getuser()) return alert('You must be logged in to claim a plot')
