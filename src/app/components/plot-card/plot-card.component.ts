@@ -59,11 +59,12 @@ export class PlotCardComponent implements AfterViewInit{
           const file = files.item(i);
           if (file) {
               const storageRef = ref(store, `images/${this.gadenID.currentId}/${this.plot.id}`);
-              uploadBytesResumable(storageRef, file);
+              const upload = uploadBytesResumable(storageRef, file);
+              upload.then(()=>{
+                this.verifyImage()
+              })
           }
       }
-      setTimeout(()=>{
-        this.verifyImage()
-      },100);
+      
     }
 }

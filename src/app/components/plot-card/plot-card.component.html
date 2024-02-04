@@ -12,16 +12,22 @@
 </div>
 } @else {
 <div class="card bg-error">
+    <figure>
+        <img [src]="this.url">
+    </figure> 
       <div class="card-body items-center text-center">
           <h2 class="card-title">  {{ plot.number }} </h2>
           <!-- <p> {{garden.description}}</p>   -->
           <div class="badge badge-secondary">{{plot.userName}}</div>
       </div>
+      @if(plot.userId === auth.getuser()?.uid){
+        <label for="fileUpload">Change the Image</label>
+        <input id="fileUpload" type="file" class="file-input file-input-bordered file-input-error w-full max-w-xs" accept="image/png, image/jpeg" #upload>
+        <button class="btn btn-primary" (click)="uploadFile(upload)">Upload</button>
+      }
 </div>
 }
     
 
-@if(this.plot.userId === auth.getuser()?.uid){}
-    <label for="fileUpload">Choose an Image</label>
-    <input id="fileUpload" type="file" accept="image/png, image/jpeg" #upload>
-    <button class="btn btn-primary" (click)="uploadFile(upload)">Upload</button>
+
+    
