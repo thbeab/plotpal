@@ -1,6 +1,8 @@
-@for(garden of gardens$ | async; track garden.id){
-    <app-garden-card [garden]="garden"></app-garden-card>
-}
+<div class="grid grid-cols-4 gap-4 p-4">
+    @for(garden of gardens$ | async; track garden.id){
+        <app-garden-card [garden]="garden"></app-garden-card>
+    }
+</div>
 
 <!-- <button class="btn btn-primary" (click)="addGarden()">Ajouter un jardin</button> -->
 
