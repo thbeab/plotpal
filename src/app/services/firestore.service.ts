@@ -29,4 +29,8 @@ export class FirestoreService {
     const gardenRef = doc(gardensRef, id)
     return getDoc(gardenRef)
   }
+
+  getPlots(gardenId: string): Observable<any[]>{
+    return collectionData(collection(this.firestore, `gardens/${gardenId}/plots`), {idField: 'id'});
+  }
 }
