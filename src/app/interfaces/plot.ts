@@ -1,6 +1,6 @@
 export interface Plot {
     id: string;
     userId: string;
-    place: string;
+    number: string;
     plants: string[];
 }
