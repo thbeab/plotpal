@@ -1,5 +1,5 @@
 @if(auth.getuser()){
-
+<div class="h-full">
     <div id="chat" #ScoobyDoo class="overflow-y-scroll">
         
         @for (message of this.mess; track message.id) {
@@ -37,4 +37,5 @@
     
     <input type=text class="input input-bordered input-accent max-w-xs" [(ngModel)]="newMessage">
     <button (click)="sendMessage()">Send</button>
+</div>  
 }
