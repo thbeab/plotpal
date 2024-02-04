@@ -1,5 +1,0 @@
-<p>sign-in works!</p>
-@if(this.user$ | async){
-    <p>{{signService.getuser()?.displayName}}</p>
-}
-<button class="btn btn-primary" (click)="signService.signIn()">Sign-In with Google</button>

@@ -1,10 +1,10 @@
 import { Routes } from '@angular/router';
 import { GardenPageComponent } from './garden-page/garden-page.component';
 import { GardensPageComponent } from './gardens-page/gardens-page.component';
-import { SignInComponent } from './components/sign-in/sign-in.component';
+
 
 export const routes: Routes = [
-    { path: '', component: SignInComponent},
+    { path: '', component: GardensPageComponent},
     { path: 'gardens', component: GardensPageComponent },
     { path: 'gardens/:id', component: GardenPageComponent },
     { path: '**', redirectTo: '' }
