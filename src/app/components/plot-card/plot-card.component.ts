@@ -6,6 +6,7 @@ import { AuthService } from '../../services/auth.service';
 const DEFAULT_GARDEN_URL = "../../../assets/default_garden.jpg"
 
 import { FirestoreService } from '../../services/firestore.service';
+import { firstValueFrom } from 'rxjs';
 
 
 @Component({
@@ -17,10 +18,10 @@ import { FirestoreService } from '../../services/firestore.service';
 })
 export class PlotCardComponent implements AfterViewInit{
   @Input() plot: Plot = {} as Plot;
-
   constructor(private firestore: FirestoreService, readonly auth: AuthService, readonly gadenID: GardenIdService) { }
 
-  claim() {
+  async claim() {
+    if (!await this.canClaim()) return alert("You can only claim 2 plots per Garden")
     if(!this.auth.getuser()) return alert('You must be logged in to claim a plot')
     this.firestore.claimPlot(this.plot.id, this.auth.getuser()?.uid as string, this.auth.getuser()?.displayName as string).then(() => {
       window.alert('Plot claimed')
@@ -28,7 +29,17 @@ export class PlotCardComponent implements AfterViewInit{
   }
 
 
+  async canClaim(){
+    let count = 0;
+    const array = await firstValueFrom(this.firestore.getPlots(this.gadenID.currentId))
+    array.forEach((value)=>{
+      if (value.userId === this.auth.getuser()?.uid){
+        count++
+      }
+    })
 
+    return count < 2
+  }
   url:string = DEFAULT_GARDEN_URL
 
   

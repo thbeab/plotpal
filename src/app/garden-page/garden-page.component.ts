@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { PlotCardComponent } from '../components/plot-card/plot-card.component';
 import { AsyncPipe } from '@angular/common';
 import { Observable } from 'rxjs';
+import { AuthService } from '../services/auth.service';
 
 @Component({
     selector: 'app-garden-page',
@@ -54,5 +55,5 @@ export class GardenPageComponent implements OnInit{
   
 
 
-  constructor(private firestore: FirestoreService, readonly gardeId: GardenIdService, readonly storage: Storage) {}
+  constructor(private firestore: FirestoreService, readonly gardeId: GardenIdService, readonly storage: Storage, readonly auth: AuthService) {}
 }
