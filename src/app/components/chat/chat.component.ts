@@ -16,8 +16,8 @@ import { GardenIdService } from '../../services/garden-id.service';
 })
 export class ChatComponent implements AfterViewInit{
   mess:any[] = [];
-  gardenid:String = '';
-  newMessage: String = '';
+  gardenid:string = '';
+  newMessage: string = '';
   messages$: Observable<any[]> = new Observable<any[]>();
   messagesRef: any;
   @ViewChild('ScoobyDoo') scrollableElement!: ElementRef;

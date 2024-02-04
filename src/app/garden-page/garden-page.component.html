@@ -8,3 +8,23 @@
     <input id="fileUpload" type="file" #upload>
     <button (click)="uploadFile(upload)">Upload</button>
 </div>
+
+<div class="grid grid-cols-4 gap-4 p-4">
+    @for(plot of plots$ | async; track plot.id){
+    <app-plot-card [plot]="plot"></app-plot-card>
+    }
+</div>
+
+<input type="text" class="input input-bordered" placeholder="Numero de la parcelle" [(ngModel)]="plotNumber" required>
+<button class="btn btn-primary" (click)="addPlot()">Ajouter une parcelle</button>
+
+<dialog #success_modal class="modal">
+    <div class="modal-box">
+        <h3 class="font-bold text-lg">Succès</h3>
+        <p>La parcelle a bien été ajoutée</p>
+        <div class="modal-action">
+            <form method="dialog">
+                <button class="btn btn-primary" (click)="success_modal.close()">Fermer</button>
+            </form>
+        </div>
+    </div>
