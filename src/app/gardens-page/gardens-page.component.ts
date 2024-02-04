@@ -6,6 +6,8 @@ import { Observable } from 'rxjs';
 import { GardenCardComponent } from '../components/garden-card/garden-card.component';
 import { FormsModule } from '@angular/forms';
 import { Garden } from '../interfaces/garden';
+import { AuthService } from '../services/auth.service';
+import { Auth, User } from '@angular/fire/auth';
 
 
 @Component({
@@ -20,7 +22,7 @@ export class GardensPageComponent implements OnInit{
   gardens$: Observable<any[]> = new Observable<any[]>();
   newGarden: Garden = {} as Garden;
 
-  constructor(private firestore: FirestoreService) {}
+  constructor(private firestore: FirestoreService, readonly auth:AuthService) {}
 
   ngOnInit(): void {
     this.gardens$.subscribe((gardens) => {
@@ -30,7 +32,9 @@ export class GardensPageComponent implements OnInit{
     this.gardens$ = this.firestore.getGardens()
   }
 
+
   addGarden() {
+    this.newGarden.ownerId = this.auth.getuser()?.uid
     this.firestore.addGarden(this.newGarden).then(() => {
       this.successModal?.nativeElement.showModal();
     })
