@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, HostListener } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, HostListener, ViewChild } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { Input } from '@angular/core';
 import { Firestore, addDoc, collection, collectionData } from '@angular/fire/firestore';
@@ -20,10 +20,12 @@ export class ChatComponent implements AfterViewInit{
   newMessage: string = '';
   messages$: Observable<any[]> = new Observable<any[]>();
   messagesRef: any;
+  @ViewChild('ScoobyDoo') scrollableElement!: ElementRef;
   
   constructor(readonly fire: Firestore, readonly auth:AuthService, readonly ids: GardenIdService){
     
   }
+
 
   @HostListener('keydown', ['$event'])
   buttonDetect(event: KeyboardEvent) {
@@ -39,10 +41,15 @@ export class ChatComponent implements AfterViewInit{
     this.messages$.subscribe((array)=>{
       array.sort((a,b)=>{return a.timestamp-b.timestamp});
       this.mess = array;
+      this.scrollBottom();
     })
   }
   
-  
+  scrollBottom(){
+    try{
+      this.scrollableElement.nativeElement.scrollTop = this.scrollableElement.nativeElement.scrollHeight
+    }catch(err){}
+  }
 
   sendMessage(){
     const date = new Date()

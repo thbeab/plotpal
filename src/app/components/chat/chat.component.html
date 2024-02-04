@@ -1,4 +1,4 @@
-<div id="chat" class="overflow-y-scroll">
+<div id="chat" #ScoobyDoo class="overflow-y-scroll">
 
     @for (message of this.mess; track message.id) {
         @if (message.user.id === this.auth.getuser()?.uid) {

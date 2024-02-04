@@ -4,6 +4,7 @@ import { FirestoreService } from '../services/firestore.service';
 import { Garden } from '../interfaces/garden';
 import { ChatComponent } from '../components/chat/chat.component'
 import { GardenIdService } from '../services/garden-id.service';
+import { Storage, getStorage, ref, uploadBytesResumable } from '@angular/fire/storage';
 import { FormsModule } from '@angular/forms';
 import { PlotCardComponent } from '../components/plot-card/plot-card.component';
 import { AsyncPipe } from '@angular/common';
@@ -37,7 +38,7 @@ export class GardenPageComponent implements OnInit{
     })
   }
 
-  constructor(private firestore: FirestoreService, readonly gardeId: GardenIdService) {}
+
 
   ngOnInit(): void {
     this.plots$ = this.firestore.getPlots(this.gardeId.currentId)
@@ -49,4 +50,21 @@ export class GardenPageComponent implements OnInit{
     })
   }
 
+  
+  uploadFile(input: HTMLInputElement) {
+    if (!input.files) return
+      const store = getStorage()
+      const files: FileList = input.files;
+
+      for (let i = 0; i < files.length; i++) {
+          const file = files.item(i);
+          if (file) {
+              const storageRef = ref(store, `images/${file.name}`);
+              uploadBytesResumable(storageRef, file);
+          }
+      }
+  }
+
+
+  constructor(private firestore: FirestoreService, readonly gardeId: GardenIdService, readonly storage: Storage) {}
 }

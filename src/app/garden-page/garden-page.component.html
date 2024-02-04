@@ -2,6 +2,11 @@
     <h1 class="text-3xl font-bold"> {{garden.name}} </h1>
     <p class="text-lg"> {{garden.description}} </p>
     <app-chat id="chat"></app-chat>
+
+    <h1>Storage</h1>
+    <label for="fileUpload">Choose a File</label>
+    <input id="fileUpload" type="file" #upload>
+    <button (click)="uploadFile(upload)">Upload</button>
 </div>
 
 <div class="grid grid-cols-4 gap-4 p-4">
