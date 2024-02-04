@@ -4,6 +4,10 @@ import { Plot } from '../../interfaces/plot';
 import { GardenIdService } from '../../services/garden-id.service';
 import { AuthService } from '../../services/auth.service';
 const DEFAULT_GARDEN_URL = "../../../assets/default_garden.jpg"
+
+import { FirestoreService } from '../../services/firestore.service';
+
+
 @Component({
   selector: 'app-plot-card',
   standalone: true,
@@ -12,12 +16,24 @@ const DEFAULT_GARDEN_URL = "../../../assets/default_garden.jpg"
   styleUrl: './plot-card.component.css'
 })
 export class PlotCardComponent implements AfterViewInit{
-  @Input() plot!: Plot;
+  @Input() plot: Plot = {} as Plot;
+
+  constructor(private firestore: FirestoreService, private auth: AuthService, readonly gadenID: GardenIdService) { }
+
+  claim() {
+    if(!this.auth.getuser()) return alert('You must be logged in to claim a plot')
+    this.firestore.claimPlot(this.plot.id, this.auth.getuser()?.uid as string, this.auth.getuser()?.displayName as string).then(() => {
+      window.alert('Plot claimed')
+    })
+  }
+
+
+
   url:string = DEFAULT_GARDEN_URL
 
-  constructor(readonly gadenID: GardenIdService, readonly auth: AuthService){
+  
     
-  }
+  
   ngAfterViewInit(): void {
     this.verifyImage()
   }
