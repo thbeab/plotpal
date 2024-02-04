@@ -6,6 +6,6 @@ import { SignInComponent } from './components/sign-in/sign-in.component';
 export const routes: Routes = [
     { path: '', component: SignInComponent},
     { path: 'gardens', component: GardensPageComponent },
-    { path: 'garden/:id', component: GardenPageComponent },
+    { path: 'gardens/:id', component: GardenPageComponent },
     { path: '**', redirectTo: '' }
 ];
