@@ -1,4 +1,4 @@
-import { AfterViewInit, Component } from '@angular/core';
+import { AfterViewInit, Component, HostListener } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { Input } from '@angular/core';
 import { Firestore, addDoc, collection, collectionData } from '@angular/fire/firestore';
@@ -24,6 +24,14 @@ export class ChatComponent implements AfterViewInit{
   constructor(readonly fire: Firestore, readonly auth:AuthService, readonly ids: GardenIdService){
     
   }
+
+  @HostListener('keydown', ['$event'])
+  buttonDetect(event: KeyboardEvent) {
+      if (event.key === 'Enter') {
+          this.sendMessage()
+      }
+  }
+
   ngAfterViewInit(): void {
     this.messagesRef = collection(this.fire, `gardens/${this.ids.currentId}/chat`);
     this.messages$ = collectionData(this.messagesRef, {idField: 'id'});
@@ -47,7 +55,11 @@ export class ChatComponent implements AfterViewInit{
     const currentDate = `${day}/${month}/${year} ${hour}:${minute}`
     
     const user = this.auth.getuser()
-    addDoc(this.messagesRef, {user: {name: user?.displayName, photo:user?.photoURL},message: this.newMessage, timestamp:date.getTime(), date: currentDate})
+    addDoc(this.messagesRef, {user: {name: user?.displayName, photo:user?.photoURL, id:user?.uid},message: this.newMessage, timestamp:date.getTime(), date: currentDate})
+    const container = document.getElementById("chat");
+    container!.scrollTop = container!.scrollHeight
+    
+    
     this.newMessage = ''
   }
 

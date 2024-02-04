@@ -1,17 +1,37 @@
-@for (message of this.mess; track message.id) {
-    <div class="chat chat-start">
-        <div class="chat-image avatar">
-          <div class="w-10 rounded-full">
-            <img alt="Tailwind CSS chat bubble component" [src]="message.user.photo" />
-          </div>
-        </div>
-        <div class="chat-header">
-          {{message.user.name}}
-          <time class="text-xs opacity-50">{{message.date}}</time>
-        </div>
-        <div class="chat-bubble">{{message.message}}</div>
-      </div>    
-}
+<div id="chat" class="overflow-y-scroll">
 
-<input type=text [(ngModel)]="newMessage">
-<button (click)="sendMessage()">Send</button>
+    @for (message of this.mess; track message.id) {
+        @if (message.user.id === this.auth.getuser()?.uid) {
+            
+            <div class="chat chat-end">
+                <div class="chat-image avatar">
+                    <div class="w-10 rounded-full">
+                        <img alt="Tailwind CSS chat bubble component" [src]="message.user.photo" />
+                    </div>
+                </div>
+                <div class="chat-header">
+                    {{message.user.name}}
+                    <time class="text-xs opacity-50">{{message.date}}</time>
+                </div>
+                <div class="chat-bubble">{{message.message}}</div>
+            </div>    
+        } @else{
+            <div class="chat chat-start">
+                <div class="chat-image avatar">
+                    <div class="w-10 rounded-full">
+                        <img alt="Tailwind CSS chat bubble component" [src]="message.user.photo" />
+                    </div>
+                </div>
+                <div class="chat-header">
+                    {{message.user.name}}
+                    <time class="text-xs opacity-50">{{message.date}}</time>
+                </div>
+                <div class="chat-bubble">{{message.message}}</div>
+            </div>    
+        }
+    }
+</div>
+    
+    
+    <input type=text class="input input-bordered input-accent max-w-xs" [(ngModel)]="newMessage">
+    <button (click)="sendMessage()">Send</button>
