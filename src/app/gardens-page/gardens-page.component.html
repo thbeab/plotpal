@@ -1,3 +1,6 @@
+
+<button class="btn btn-primary m-4" onclick="garden_form.showModal()">Add a garden</button>
+
 <div class="grid grid-cols-4 gap-4 p-4">
     @for(garden of gardens$ | async; track garden.id){
         <app-garden-card [garden]="garden"></app-garden-card>
@@ -8,9 +11,7 @@
 <!-- <button class="btn btn-primary" (click)="addGarden()">Ajouter un jardin</button> -->
 
 <!-- Open the modal using ID.showModal() method -->
-<div class="flex justify-center">
-    <button class="btn btn-primary m-4" onclick="garden_form.showModal()">Add a garden</button>
-</div>
+
 <dialog id="garden_form" class="modal">
   <div class="modal-box">
     <h3 class="font-bold text-lg">Nouveau jardin</h3>
