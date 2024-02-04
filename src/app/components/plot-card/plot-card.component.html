@@ -1,17 +1,16 @@
 @if(!plot.userId){
-<div class="card bg-success">
+<div class="card bg-base-200">
     <figure>
         <img [src]="this.url">
     </figure> 
       <div class="card-body items-center text-center">
           <h2 class="card-title">  {{ plot.number }} </h2>
-          <!-- <p> {{garden.description}}</p>   -->
       </div>
       
-      <button class="btn btn-primary" (click)="claim()"> Claim </button>
+      <button class="btn btn-primary m-4" (click)="claim()"> Claim </button>
 </div>
 } @else {
-<div class="card bg-error">
+<div class="card bg-base-300">
     <figure>
         <img [src]="this.url">
     </figure> 
@@ -22,8 +21,8 @@
       </div>
       @if(plot.userId === auth.getuser()?.uid){
         <label for="fileUpload">Change the Image</label>
-        <input id="fileUpload" type="file" class="file-input file-input-bordered file-input-error w-full max-w-xs" accept="image/png, image/jpeg" #upload>
-        <button class="btn btn-primary" (click)="uploadFile(upload)">Upload</button>
+        <input id="fileUpload" type="file" class="file-input file-input-bordered file-input-secondary m-4" accept="image/png, image/jpeg" #upload>
+        <button class="btn btn-primary m-4" (click)="uploadFile(upload)">Upload</button>
       }
 </div>
 }

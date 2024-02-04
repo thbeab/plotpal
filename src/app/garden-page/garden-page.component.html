@@ -1,20 +1,18 @@
 <div>
     <h1 class="text-3xl font-bold"> {{garden.name}} </h1>
     <p class="text-lg"> {{garden.description}} </p>
+
+    <div class="px-4">
+        <input type="text" class="input input-bordered" placeholder="Numero de la parcelle" [(ngModel)]="plotNumber" required>
+        <button class="btn btn-primary mx-4" (click)="addPlot()">Ajouter une parcelle</button>
+    </div>
     <app-chat id="chat"></app-chat>
-
-
 </div>
 
-<div class="grid grid-cols-4 gap-4 p-4">
+<div class="grid grid-cols-3 gap-4 p-4">
     @for(plot of plots$ | async; track plot.id){
     <app-plot-card [plot]="plot"></app-plot-card>
     }
-</div>
-
-<div class="px-4">
-    <input type="text" class="input input-bordered" placeholder="Numero de la parcelle" [(ngModel)]="plotNumber" required>
-    <button class="btn btn-primary mx-4" (click)="addPlot()">Ajouter une parcelle</button>
 </div>
 
 <dialog #success_modal class="modal">
