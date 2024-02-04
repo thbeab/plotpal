@@ -1,7 +1,14 @@
 <div class="card bg-base-200">
-      <div class="card-body items-center text-center">
-          <h2 class="card-title">  {{ plot.number }} </h2>
-          <!-- <p> {{garden.description}}</p>   -->
-      </div>
+    @if(this.url){
+        <img [src]="this.url">
+    }
+    <div class="card-body items-center text-center">
+        <h2 class="card-title">  {{ plot.number }} </h2>
+        <!-- <p> {{garden.description}}</p>   -->
+    </div>
 </div>
 
+@if(this.plot.userId === auth.getuser()?.uid){}
+    <label for="fileUpload">Choose an Image</label>
+    <input id="fileUpload" type="file" accept="image/png, image/jpeg" #upload>
+    <button class="btn btn-primary" (click)="uploadFile(upload)">Upload</button>

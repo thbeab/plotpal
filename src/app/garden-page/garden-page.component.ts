@@ -51,19 +51,7 @@ export class GardenPageComponent implements OnInit{
   }
 
   
-  uploadFile(input: HTMLInputElement) {
-    if (!input.files) return
-      const store = getStorage()
-      const files: FileList = input.files;
-
-      for (let i = 0; i < files.length; i++) {
-          const file = files.item(i);
-          if (file) {
-              const storageRef = ref(store, `images/${file.name}`);
-              uploadBytesResumable(storageRef, file);
-          }
-      }
-  }
+  
 
 
   constructor(private firestore: FirestoreService, readonly gardeId: GardenIdService, readonly storage: Storage) {}
