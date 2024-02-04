@@ -1,0 +1,17 @@
+@for (message of this.mess; track message.id) {
+    <div class="chat chat-start">
+        <div class="chat-image avatar">
+          <div class="w-10 rounded-full">
+            <img alt="Tailwind CSS chat bubble component" [src]="message.user.photo" />
+          </div>
+        </div>
+        <div class="chat-header">
+          {{message.user.name}}
+          <time class="text-xs opacity-50">{{message.date}}</time>
+        </div>
+        <div class="chat-bubble">{{message.message}}</div>
+      </div>    
+}
+
+<input type=text [(ngModel)]="newMessage">
+<button (click)="sendMessage()">Send</button>
