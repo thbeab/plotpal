@@ -1,10 +1,10 @@
 import { Plot } from './plot';
 
 export interface Garden {
-description: any;
     id: string;
+    ownerId: string;
     name: string;
-    descriptipn: string;
+    description: string;
     location: string;
     plots: Plot[];
 }
