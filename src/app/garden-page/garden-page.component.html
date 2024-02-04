@@ -12,10 +12,14 @@
     }
 </div>
 
-<div class="px-4">
-    <input type="text" class="input input-bordered" placeholder="Numero de la parcelle" [(ngModel)]="plotNumber" required>
-    <button class="btn btn-primary mx-4" (click)="addPlot()">Ajouter une parcelle</button>
-</div>
+
+@if(this.garden.ownerId === this.auth.getuser()?.uid){
+
+    <div class="px-4">
+        <input type="text" class="input input-bordered" placeholder="Numero de la parcelle" [(ngModel)]="plotNumber" required>
+        <button class="btn btn-primary mx-4" (click)="addPlot()">Ajouter une parcelle</button>
+    </div>
+}
 
 <dialog #success_modal class="modal">
     <div class="modal-box">
