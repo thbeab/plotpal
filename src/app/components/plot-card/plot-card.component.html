@@ -17,12 +17,16 @@
       <div class="card-body items-center text-center">
           <h2 class="card-title">  {{ plot.number }} </h2>
           <!-- <p> {{garden.description}}</p>   -->
-          <div class="badge badge-secondary">{{plot.userName}}</div>
+          <div class="badge badge-primary">{{plot.userName}}</div>
       </div>
       @if(plot.userId === auth.getuser()?.uid){
-        <label for="fileUpload">Change the Image</label>
-        <input id="fileUpload" type="file" class="file-input file-input-bordered file-input-secondary m-4" accept="image/png, image/jpeg" #upload>
-        <button class="btn btn-primary m-4" (click)="uploadFile(upload)">Upload</button>
+        <label class="form-control w-full max-w-xs">
+        <div class="label">
+          <span class="label-text">Change the Image</span>
+        </div>
+        <input id="fileUpload" type="file" class="file-input file-input-bordered m-4" accept="image/png, image/jpeg" #upload>
+        </label>
+        <button class="btn m-4" (click)="uploadFile(upload)">Upload</button>
       }
 </div>
 }
