@@ -3,7 +3,7 @@ import { getDownloadURL, getStorage, ref, uploadBytesResumable } from '@angular/
 import { Plot } from '../../interfaces/plot';
 import { GardenIdService } from '../../services/garden-id.service';
 import { AuthService } from '../../services/auth.service';
-
+const DEFAULT_GARDEN_URL = "../../../assets/default_garden.jpg"
 @Component({
   selector: 'app-plot-card',
   standalone: true,
@@ -13,7 +13,7 @@ import { AuthService } from '../../services/auth.service';
 })
 export class PlotCardComponent implements AfterViewInit{
   @Input() plot!: Plot;
-  url:string = ''
+  url:string = DEFAULT_GARDEN_URL
 
   constructor(readonly gadenID: GardenIdService, readonly auth: AuthService){
     
@@ -30,7 +30,7 @@ export class PlotCardComponent implements AfterViewInit{
     getDownloadURL(reference).then((url)=>{
       this.url = url
     }).catch(error=>{
-      this.url = ''
+      this.url = DEFAULT_GARDEN_URL
     })
   }
 

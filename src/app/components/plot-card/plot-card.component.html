@@ -1,6 +1,8 @@
 <div class="card bg-base-200">
     @if(this.url){
-        <img [src]="this.url">
+       <figure>
+            <img [src]="this.url">
+        </figure> 
     }
     <div class="card-body items-center text-center">
         <h2 class="card-title">  {{ plot.number }} </h2>
