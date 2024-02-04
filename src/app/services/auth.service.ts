@@ -28,8 +28,8 @@ export class AuthService {
       
       
 
-    }).catch(()=>{
-      console.log("PPPP")
+    }).catch((error)=>{
+      console.log(error)
     })
 
 
