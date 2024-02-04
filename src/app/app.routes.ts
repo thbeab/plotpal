@@ -6,6 +6,6 @@ import { GardensPageComponent } from './gardens-page/gardens-page.component';
 export const routes: Routes = [
     { path: '', component: GardensPageComponent},
     { path: 'gardens', component: GardensPageComponent },
-    { path: 'garden/:id', component: GardenPageComponent },
+    { path: 'gardens/:id', component: GardenPageComponent },
     { path: '**', redirectTo: '' }
 ];

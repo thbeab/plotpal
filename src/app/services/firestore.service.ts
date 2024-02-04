@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Firestore, collection, collectionData} from '@angular/fire/firestore';
+import { Firestore, collection, collectionData, addDoc, DocumentReference, DocumentData} from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -11,5 +11,10 @@ export class FirestoreService {
 
   getGardens(): Observable<any[]>{
     return collectionData(collection(this.firestore, 'gardens'), {idField: 'id'});
+  }
+
+  addGarden(garden: any): Promise<DocumentReference<any, DocumentData>>{
+    const gardensRef = collection(this.firestore, 'gardens');
+    return addDoc(gardensRef, garden);
   }
 }

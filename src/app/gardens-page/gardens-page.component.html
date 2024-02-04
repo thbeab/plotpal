@@ -1,3 +1,47 @@
-@for(garden of gardens$ | async; track garden.id){
-    <app-garden-card [garden]="garden"></app-garden-card>
-}
+<div class="grid grid-cols-4 gap-4 p-4">
+    @for(garden of gardens$ | async; track garden.id){
+        <app-garden-card [garden]="garden"></app-garden-card>
+    }
+</div>
+
+<!-- <button class="btn btn-primary" (click)="addGarden()">Ajouter un jardin</button> -->
+
+<!-- Open the modal using ID.showModal() method -->
+<button class="btn btn-primary" onclick="garden_form.showModal()">open modal</button>
+<dialog id="garden_form" class="modal">
+  <div class="modal-box">
+    <h3 class="font-bold text-lg">Nouveau jardin</h3>
+    <form>
+      <div class="form-control">
+        <div class="label">
+            <span class="label-text">Nom</span>
+        </div>
+        <input class="input input-bordered" type="text" id="name" name="name" [(ngModel)]="newGarden.name" required>
+      </div>
+      <div class="form-control">
+        <div class="label">
+            <span class="label-text">Description</span>
+        </div>
+        <textarea class="textarea textarea-bordered" id="description" name="description" [(ngModel)]="newGarden.description" required></textarea>
+      </div>
+    </form>
+    <div class="modal-action">
+    <button class="btn btn-primary" (click)="addGarden()">Ajouter</button>
+      <form method="dialog">
+        <button class="btn">Annuler</button>
+      </form>
+    </div>
+  </div>
+</dialog>
+
+<dialog #success_modal class="modal">
+  <div class="modal-box">
+    <h3 class="font-bold text-lg">Succès</h3>
+    <p>Le jardin a bien été ajouté</p>
+    <div class="modal-action">
+        <form method="dialog">
+            <button class="btn btn-primary" (click)="success_modal.close()">Fermer</button>
+        </form>
+      <button class="btn btn-primary">Fermer</button>
+    </div>
+  </div>
