@@ -14,8 +14,6 @@ export class AuthService {
 
    public getuser(){
     const auth = getAuth();
-    console.log("auth")
-    console.log(auth.currentUser)
     return auth.currentUser
    }
 
