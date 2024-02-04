@@ -1,7 +1,18 @@
-<div class="card bg-base-200">
+@if(!plot.userId){
+<div class="card bg-success">
+      <div class="card-body items-center text-center">
+          <h2 class="card-title">  {{ plot.number }} </h2>
+          <!-- <p> {{garden.description}}</p>   -->
+      </div>
+      <button class="btn btn-primary" (click)="claim()"> Claim </button>
+</div>
+} @else {
+<div class="card bg-error">
       <div class="card-body items-center text-center">
           <h2 class="card-title">  {{ plot.number }} </h2>
           <!-- <p> {{garden.description}}</p>   -->
       </div>
 </div>
+}
+    
 
