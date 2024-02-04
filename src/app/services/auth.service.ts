@@ -1,28 +1,32 @@
-import { Injectable } from '@angular/core';
-import { GoogleAuthProvider, getAuth, signInWithPopup, signOut } from '@angular/fire/auth';
-
+import { Injectable, inject } from '@angular/core';
+import { Auth, GoogleAuthProvider, User, getAuth, signInWithPopup, signOut } from '@angular/fire/auth';
+import { Subject } from 'rxjs'
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  user: any;
   provider = new GoogleAuthProvider();
+ 
   constructor() {
-    const user = localStorage.getItem("user");
-    this.user = user ? user : null
-    console.log("ABC" + this.user)
+    
    }
   
+
+   public getuser(){
+    const auth = getAuth();
+    console.log("auth")
+    console.log(auth.currentUser)
+    return auth.currentUser
+   }
 
   public signIn(){
     const auth = getAuth();
     signInWithPopup(auth, this.provider).then((result)=>{
       const creds = GoogleAuthProvider.credentialFromResult(result);
       const token = creds?.accessToken;
-      this.user = result.user;
-      localStorage.setItem("user", JSON.stringify(this.user));
       
-      console.log(this.user);
+      
+      
 
     }).catch(()=>{
       console.log("PPPP")
@@ -34,9 +38,6 @@ export class AuthService {
   public logOut(){
     const auth = getAuth();
     signOut(auth).then(()=>{
-      console.log("AVC");
-      this.user = null
-      localStorage.removeItem("user")
     })
   }
 }

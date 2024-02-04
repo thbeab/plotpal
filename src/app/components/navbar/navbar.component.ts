@@ -10,6 +10,6 @@ import { AuthService } from '../../services/auth.service';
 })
 export class NavbarComponent {
   constructor(readonly auth:AuthService){
-    
+
   }
 }
